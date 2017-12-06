@@ -5,7 +5,11 @@ var makeRequest = function(url, callback){
   request.send();
 }
 
-
+var requestComplete = function(){
+  if(this.status !== 200) return;
+  var jsonString = this.responseText;
+  beers = JSON.parse(jsonString);
+}
 
 
 var app = function(){
