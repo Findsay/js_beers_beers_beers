@@ -11,6 +11,7 @@ var requestComplete = function(){
   var beers = JSON.parse(jsonString);
 
   forEachBeer(beers, createAndAppendLiToBeerList);
+  forEachBeer(beers, getIngredients);
 }
 
 var loadBeers = function(){
@@ -28,7 +29,7 @@ var createAndAppendLiToBeerList = function(beer){
 
   var image = createImage (beer);
   newLi.appendChild(image);
-  
+
   ul.appendChild(newLi);
 }
 
@@ -45,6 +46,16 @@ var createImage = function(beer){
   newImage.height = 100;
   return newImage;
 }
+
+var getIngredients = function(beer){
+  var ingredients = beer.ingredients;
+  var malt = ingredients.malt;
+  return ingredients;
+}
+
+
+
+
 
 var app = function(){
   loadBeers();
