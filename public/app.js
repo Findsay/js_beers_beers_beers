@@ -18,8 +18,6 @@ var requestComplete = function(){
 
   forEachBeer(beers, populateSelect);
   forEachBeer(beers, displayBeer);
-
-  debugger;
 }
 
 var loadBeers = function(){
@@ -119,11 +117,16 @@ var clearAllDivsFromMain = function(){
 }
 
 var displaySelectedBeer = function(){
-  debugger;
   var beerName = this.value;
-  var beer = findBeerByName(beerName);
-  clearAllDivsFromMain();
-  displayBeer(beer);
+  if(beerName === "All"){
+    clearAllDivsFromMain();
+    forEachBeer(beers, displayBeer);
+  }else{
+    var beer = findBeerByName(beerName);
+    clearAllDivsFromMain();
+    displayBeer(beer);
+  }
+
 }
 
 var findBeerByName = function(name){
@@ -131,8 +134,6 @@ var findBeerByName = function(name){
     return beer.name === name;
   })
 }
-
-
 
 var app = function(){
   loadBeers();
