@@ -8,7 +8,9 @@ var makeRequest = function(url, callback){
 var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
-  beers = JSON.parse(jsonString);
+  var beers = JSON.parse(jsonString);
+
+  forEachBeer(beers, createAndAppendLiToBeerList);
 }
 
 var loadBeers = function(){
@@ -16,6 +18,19 @@ var loadBeers = function(){
   makeRequest(url, requestComplete);
 }
 
+var createAndAppendLiToBeerList = function(beer){
+  var ul = document.getElementById('beer-list');
+
+  var newLi = document.createElement('li');
+  newLi.innerText = beer.name;
+  ul.appendChild(newLi);
+}
+
+var forEachBeer = function(array, callback){
+  array.forEach(function(beer){
+    callback(beer);
+  })
+}
 
 var app = function(){
   loadBeers();
