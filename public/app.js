@@ -11,7 +11,8 @@ var requestComplete = function(){
   var beers = JSON.parse(jsonString);
 
   forEachBeer(beers, displayBeer);
-  forEachBeer(beers, getIngredients);
+
+  debugger;
 }
 
 var loadBeers = function(){
@@ -47,9 +48,12 @@ var createBeerImage = function(beer){
   return newImage;
 }
 
-var getIngredients = function(beer){
-  var ingredients = beer.ingredients;
-  return ingredients;
+var getIngredientsByType = function(ingredientsArray){
+  var allIngredients = [];
+  ingredientsArray.forEach(function(ingredient){
+    allIngredients.push(ingredient.name);
+  })
+  return allIngredients;
 }
 
 var createDiv = function(){
@@ -69,15 +73,27 @@ var displayBeer = function(beer){
   var imgBeer = createBeerImage(beer);
   var pIngredients = createParagraph("Ingredients");
 
-  // var ingredients = beer.ingredients;
+  var malts = getIngredientsByType(beer.ingredients.malt);
+  var string = "Malts: " + malts.join();
+  var pMalts = createParagraph(string);
 
+  var hops = getIngredientsByType(beer.ingredients.hops);
+  var string = "Hops: " + hops.join();
+  var pHops = createParagraph(string);
 
+  var string = "Yeast: " + beer.ingredients.yeast;
+  var pYeast = createParagraph(string);
 
 
   document.body.appendChild(div);
   div.appendChild(pBeerName);
   div.appendChild(imgBeer);
   div.appendChild(pIngredients);
+  div.appendChild(pMalts);
+  div.appendChild(pHops);
+  div.appendChild(pYeast);
+
+
 }
 
 
