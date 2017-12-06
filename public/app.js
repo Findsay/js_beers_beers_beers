@@ -10,7 +10,7 @@ var requestComplete = function(){
   var jsonString = this.responseText;
   var beers = JSON.parse(jsonString);
 
-  forEachBeer(beers, createAndAppendLiToBeerList);
+  forEachBeer(beers, displayBeer);
   forEachBeer(beers, getIngredients);
 }
 
@@ -39,7 +39,7 @@ var forEachBeer = function(array, callback){
   })
 }
 
-var createImage = function(beer){
+var createBeerImage = function(beer){
   var newImage = document.createElement('img');
   newImage.src = beer.image_url;
   newImage.width = 50;
@@ -49,11 +49,36 @@ var createImage = function(beer){
 
 var getIngredients = function(beer){
   var ingredients = beer.ingredients;
-  var malt = ingredients.malt;
   return ingredients;
 }
 
+var createDiv = function(){
+  var newDiv = document.createElement('div');
+  return newDiv;
+}
 
+var createParagraph = function(text){
+  var newP = document.createElement('p');
+  newP.innerText = text;
+  return newP;
+}
+
+var displayBeer = function(beer){
+  var div = createDiv();
+  var pBeerName = createParagraph(beer.name);
+  var imgBeer = createBeerImage(beer);
+  var pIngredients = createParagraph("Ingredients");
+
+  // var ingredients = beer.ingredients;
+
+
+
+
+  document.body.appendChild(div);
+  div.appendChild(pBeerName);
+  div.appendChild(imgBeer);
+  div.appendChild(pIngredients);
+}
 
 
 
