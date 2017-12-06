@@ -1,6 +1,11 @@
+*{
+  font-family: 'Oswald', sans-serif;
+}
+
 main{
   width: 300px;
   margin: 0 auto;
+
 }
 
 input{
@@ -13,4 +18,8 @@ input{
 
 .beers{
   padding: 5px;
+}
+
+#title{
+
 }
