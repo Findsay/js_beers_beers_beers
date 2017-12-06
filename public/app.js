@@ -11,6 +11,11 @@ var requestComplete = function(){
   beers = JSON.parse(jsonString);
 }
 
+var loadBeers = function(){
+  var url = "https://api.punkapi.com/v2/beers"
+  makeRequest(url, requestComplete);
+}
+
 
 var app = function(){
   loadBeers();
