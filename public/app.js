@@ -20,9 +20,15 @@ var loadBeers = function(){
 
 var createAndAppendLiToBeerList = function(beer){
   var ul = document.getElementById('beer-list');
-
   var newLi = document.createElement('li');
-  newLi.innerText = beer.name;
+  var newP = document.createElement('p');
+
+  newP.innerText = beer.name;
+  newLi.appendChild(newP);
+
+  var image = createImage (beer);
+  newLi.appendChild(image);
+  
   ul.appendChild(newLi);
 }
 
@@ -30,6 +36,14 @@ var forEachBeer = function(array, callback){
   array.forEach(function(beer){
     callback(beer);
   })
+}
+
+var createImage = function(beer){
+  var newImage = document.createElement('img');
+  newImage.src = beer.image_url;
+  newImage.width = 50;
+  newImage.height = 100;
+  return newImage;
 }
 
 var app = function(){
